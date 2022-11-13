@@ -1,0 +1,22 @@
+{
+  "name": "set-up-node-typescript",
+  "version": "1.0.0",
+  "description": "this setup is created to set complete nodejs using typescript",
+  "main": "index.ts",
+  "author": "Adxell",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon",
+    "build": "rimraf ./build && node build/index.js",
+    "start": "npm run build && node build/index.js"
+  },
+  "dependencies": {
+    "typescript": "^4.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.9.1"
+  }
+}
