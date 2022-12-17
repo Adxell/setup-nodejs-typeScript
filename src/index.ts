@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 import { Player, QueryType, Queue } from 'discord-player'
 
-import { playCommand } from './commands';
+import { playCommand, pauseCommand } from './commands';
 
 dotenv.config()
 
@@ -158,13 +158,28 @@ client.on("interactionCreate", async (interaction) => {
                 await interaction.followUp({ embeds: [embed] });
                 return
             }
+            return
         }
+
+        if (interaction.commandName === "pause") {
+            const queue = player.getQueue(interaction.guildId!)
+            if (!queue) {
+                await interaction.reply("There are no songs in the queue")
+                return
+            }
+
+            queue.setPaused(true);
+
+            await interaction.reply('Player has been pasued')
+        }
+
     }
 })
 
 async function main() {
     const commands: RESTPostAPIChatInputApplicationCommandsJSONBody[] = [
-        playCommand
+        playCommand,
+        pauseCommand
     ];
     try {
         console.log("Started refreshing application (/) commands.");
